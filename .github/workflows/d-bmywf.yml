@@ -7,7 +7,7 @@ env:
   SERVER_HOST: '85.28.47.165'
   SERVER_USER: root
   SERVER_PATH: /var/www/trur/
-# Бэкэнд в варианте сайта "a" находится в папке /var/www/trur/
+# Бэкэнд  находится в папке /var/www/trur/
 
 jobs:
 
@@ -40,5 +40,5 @@ jobs:
         username: ${{ env.SERVER_USER }}
         key: ${{ secrets.PKEY }}
         script: |
-           cd /var/www/trur/api
+           cd /var/www/trur
            pm2 restart backend
