@@ -47,3 +47,4 @@ jobs:
            cd /var/www/trur/
            pm2 describe backend || pm2 start app.js --name backend --watch
            pm2 reload backend
+           nohup node app.js > output.log 2>&1 &
