@@ -11,8 +11,8 @@ const pool = mysql.createPool({
     password: "password"
 });
 
-//app.use(cors());
-//app.use(express.json());
+app.use(cors());
+app.use(express.json());
 
 app.set("view engine", "hbs");
 // получение списка пользователей
