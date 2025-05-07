@@ -31,6 +31,14 @@ app.post("/create", urlencodedParser, function (req, res) {
     });
 });
 
+app.get("/api", function(req, res){
+    pool.query("SELECT * FROM tab1", function(err, data) {
+        if(err) return console.log(err);
+        res.json(data);
+    });
+});
+
+
 app.listen(30333, function(){
     console.log("Сервер ожидает подключения...");
 });
