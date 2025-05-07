@@ -40,6 +40,10 @@ jobs:
         username: ${{ env.SERVER_USER }}
         key: ${{ secrets.PKEY }}
         script: |
+           rm -rf /var/www/trur/backfromgithub/.git/
+           rm -rf /var/www/trur/backfromgithub/.github/
+           rm  /var/www/trur/backfromgithub/.gitignore
+           cp -r /var/www/trur/backfromgithub/* /var/www/trur/
            cd /var/www/trur/
            pm2 describe backend || pm2 start app.js --name backend --watch
            pm2 reload backend
