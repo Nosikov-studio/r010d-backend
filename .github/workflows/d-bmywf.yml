@@ -41,4 +41,6 @@ jobs:
         key: ${{ secrets.PKEY }}
         script: |
            cd /var/www/trur
-           pm2 restart backend
+           git pull           
+           pm2 describe backend || pm2 start app.js --name backend
+           pm2 reload backend
