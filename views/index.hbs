@@ -17,7 +17,7 @@
 </head>
 <body>
 <h1>+++Список пользователей+++</h1>
-<p><a href="/create">Добавить пользователя</a></p>
+<p>*************************************</p>
 <table>
     <tr><th>Name</th><th>Age</th></tr>
     {{#each users}}
@@ -29,7 +29,7 @@
 </table>
 
 <h1>Добавление пользователя</h1>
-<form method="POST">
+<form action="/create" method="POST">
     <label>Имя</label><br>
     <input name="name" class="field"/><br><br>
     <label>Возраст</label><br>
