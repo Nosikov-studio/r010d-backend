@@ -12,7 +12,7 @@ const pool = mysql.createPool({
 });
 
 app.use(cors());
-app.use(express.json());
+//app.use(express.json());
 
 app.set("view engine", "hbs");
 // получение списка пользователей
