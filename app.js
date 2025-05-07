@@ -1,5 +1,6 @@
 const mysql = require("mysql2");
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const urlencodedParser = express.urlencoded({extended: false});
 const pool = mysql.createPool({
@@ -9,6 +10,10 @@ const pool = mysql.createPool({
     database: "expo",
     password: "password"
 });
+
+app.use(cors());
+app.use(express.json());
+
 app.set("view engine", "hbs");
 // получение списка пользователей
 app.get("/", function(req, res){
