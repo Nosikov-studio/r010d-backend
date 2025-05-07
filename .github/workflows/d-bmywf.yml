@@ -34,7 +34,7 @@ jobs:
       run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }}:${{ env.SERVER_PATH }}
 
     - name: part7 - Restart Express server on remote
-      uses: appleboy/ssh-action@v0.1.7
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ env.SERVER_HOST }}
         username: ${{ env.SERVER_USER }}
@@ -42,5 +42,5 @@ jobs:
         script: |
            cd /var/www/trur/
            git pull           
-           pm2 describe backend || pm2 start app.js --name backend
+           pm2 describe backend || pm2 start app.js --name backend --watch
            pm2 reload backend
