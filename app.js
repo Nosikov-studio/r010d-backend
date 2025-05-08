@@ -54,9 +54,10 @@ app.get("/api", function(req, res){
     });
 });
 
-app.post("/api", function(req, res){
-    const name = req.body.nam;
-    const age = req.body.ag;
+app.post("/api", urlencodedParser, function (req, res) {
+    if(!req.body) return res.sendStatus(400);
+    const name = req.body.name;
+    const age = req.body.age;
     pool.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age], function(err, data) {
         if(err) return console.log(err);
         res.json(data);
