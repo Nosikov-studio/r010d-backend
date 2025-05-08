@@ -36,16 +36,7 @@ app.post("/create", urlencodedParser, function (req, res) {
     });
 });
 
-// специально для клиента (truruky.ru), там переменные 'nam' и 'ag'
-app.post("/createfromclient", urlencodedParser, function (req, res) {
-    if(!req.body) return res.sendStatus(400);
-    const name = req.body.nam;
-    const age = req.body.ag;
-    pool.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age], function(err, data) {
-        if(err) return console.log(err);
-        res.redirect("/");
-    });
-});
+
 
 app.get("/api", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) {
