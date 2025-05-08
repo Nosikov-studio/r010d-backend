@@ -51,6 +51,7 @@ app.post("/api", urlencodedParser, function (req, res) {
     const age = req.body.age;
     pool.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age], function(err, data) {
         if(err) return console.log(err);
+        console.log('from back'+data);
         res.json(data);
     });
 });
