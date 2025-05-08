@@ -39,8 +39,8 @@ app.post("/create", urlencodedParser, function (req, res) {
 // специально для клиента (truruky.ru), там переменные 'nam' и 'ag'
 app.post("/createfromclient", urlencodedParser, function (req, res) {
     if(!req.body) return res.sendStatus(400);
-    const name = req.body.nam;
-    const age = req.body.ag;
+    const name = req.body.name;
+    const age = req.body.age;
     pool.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age], function(err, data) {
         if(err) return console.log(err);
         res.redirect("/");
