@@ -49,6 +49,7 @@ app.post("/api", urlencodedParser, function (req, res) {
     if(!req.body) return res.sendStatus(400);
     const name = req.body.name;
     const age = req.body.age;
+    console.log('from backblabla');
     pool.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age], function(err, data) {
         if(err) return console.log(err);
         console.log('from back'+data);
