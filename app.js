@@ -55,7 +55,9 @@ app.get("/api", function(req, res){
 });
 
 app.post("/api", function(req, res){
-    pool.query("SELECT * FROM tab1", function(err, data) {
+    const name = req.body.nam;
+    const age = req.body.ag;
+    pool.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age], function(err, data) {
         if(err) return console.log(err);
         res.json(data);
     });
