@@ -52,21 +52,21 @@ app.post("/create", urlencodedParser, function (req, res) {
 app.get("/kuku", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) { 
 
-        res.send(`<b style="font-size:50px; color:green">blablabla!!!<br> ${JSON.stringify(data)[0]}</b>`);
+        res.send(`<b style="font-size:50px; color:green">blablabla!!!<br> ${JSON.stringify(data)}</b>`);
     });
 });
 
 // с помощью промисов (требуется mysql2/promise)
 app.get("/bubu", function(req, res){
-    pool2.query("SELECT * FROM tab1").then(function(data) {
-        res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(data)[0]}</b>/`);
+    pool2.query("SELECT * FROM tab1").then(function([rows, fields]) {
+        res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(rows)}</b>/`);
     });
 });
 
 // с помощью async - await (требуется mysql2/promise)
 app.get("/lulu", async function(req, res){
     let data=await pool2.query("SELECT * FROM tab1");    
-    res.send(`<b style="font-size:50px; color:red"> fire!!!<br> fire!!! <br> ${JSON.stringify(data)[0]} </b>/`);
+    res.send(`<b style="font-size:50px; color:red"> fire!!!<br> fire!!! <br> ${JSON.stringify(data)} </b>/`);
     });
 
 
