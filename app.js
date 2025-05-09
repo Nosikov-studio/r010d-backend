@@ -65,7 +65,7 @@ app.get("/bubu", function(req, res){
 // с помощью промисов (требуется mysql2/promise)
 app.get("/mumu", function(req, res){
     pool2.query("SELECT * FROM tab1").then(function(data) {
-        res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(data[0])}</b>/`);
+        res.send(`<b style="font-size:50px; color:brown"> sobaka??? <br> ${JSON.stringify(data[0])}</b>/`);
     });
 });
 
