@@ -50,3 +50,6 @@ jobs:
            nohup node app.js > output.log 2>&1 &
            pm2 delete backend || true
            pm2 start /var/www/trur/app.js --name backend --watch
+           pm2 save
+           pm2 startup
+           reboot
