@@ -15,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.set("view engine", "hbs");
+// *****************************работа с шаблонизатором***********************
 // получение списка пользователей
 app.get("/", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) {
@@ -36,7 +37,30 @@ app.post("/create", urlencodedParser, function (req, res) {
     });
 });
 
+// *****************************работа разными подходами (метод get) ***********************
 
+// с помощью колбэков
+app.get("/kuku", function(req, res){
+    pool.query("SELECT * FROM tab1", function(err, data) {        
+        res.send('<b style="font-size:50px; color:green">blablabla!!!</b>');
+    });
+});
+
+// с помощью промисов
+app.get("/bubu", function(req, res){
+    pool.query("SELECT * FROM tab1").then(function(data) {
+        res.send('<b style="font-size:50px; color:red"> fire!!!<br> fire!!! </b>/');
+    });
+});
+
+// с помощью async - await
+app.get("/lulu", async function(req, res){
+    await pool.query("SELECT * FROM tab1");    
+    res.send('<b style="font-size:50px; color:red"> fire!!!<br> fire!!! </b>/');
+    });
+
+
+// *****************************работа с API***********************
 
 app.get("/api", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) {
@@ -44,29 +68,6 @@ app.get("/api", function(req, res){
         res.json(data);
     });
 });
-
-
-app.get("/kuku", function(req, res){
-    pool.query("SELECT * FROM tab1", function(err, data) {
-        if(err) return console.log(err);
-        res.send('blabla');
-    });
-});
-
-app.get("/kukuku", function(req, res){
-    pool.query("SELECT * FROM tab1", function(err, data) {
-        if(err) return console.log(err);
-        res.send('<b style="font-size:50px; color:green">blablabla!!!</b>');
-    });
-});
-
-app.get("/bubu", function(req, res){
-    pool.query("SELECT * FROM tab1", function(err, data) {
-        if(err) return console.log(err);
-        res.send('<b style="font-size:50px; color:red"> fire!!!<br> fire!!! </b>/');
-    });
-});
-
 
 app.post("/api", urlencodedParser, function (req, res) {
     if(!req.body) return res.sendStatus(400);
@@ -80,7 +81,7 @@ app.post("/api", urlencodedParser, function (req, res) {
     });
 });
 
-
+//***********************************************************
 app.listen(30333, function(){
     console.log("Сервер ожидает подключения...");
 });
