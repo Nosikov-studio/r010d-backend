@@ -55,6 +55,13 @@ app.get("/kuku", function(req, res){
         res.send(`<b style="font-size:50px; color:green">blablabla!!!<br> ${JSON.stringify(data)}</b>`);
     });
 });
+// с помощью колбэков (требуется mysql2)
+app.get("/nunu", function(req, res){
+    pool.query("SELECT * FROM tab1", function(err, data) { 
+
+        res.send(`<b style="font-size:50px; color:pink">nununununu!!!<br> ${(data[0])}</b>`);
+    });
+});
 
 // с помощью промисов (требуется mysql2/promise)
 app.get("/bubu", function(req, res){
