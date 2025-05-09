@@ -62,6 +62,13 @@ app.get("/bubu", function(req, res){
         res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(r)}</b>/`);
     });
 });
+// с помощью промисов (требуется mysql2/promise)
+app.get("/mumu", function(req, res){
+    pool2.query("SELECT * FROM tab1").then(function(data) {
+        res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(data[0])}</b>/`);
+    });
+});
+
 
 // с помощью async - await (требуется mysql2/promise)
 app.get("/lulu", async function(req, res){
