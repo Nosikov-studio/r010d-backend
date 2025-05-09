@@ -48,21 +48,21 @@ app.post("/create", urlencodedParser, function (req, res) {
 
 // *****************************работа разными подходами (метод get) ***********************
 
-// с помощью колбэков
+// с помощью колбэков (требуется mysql2)
 app.get("/kuku", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) {        
         res.send('<b style="font-size:50px; color:green">blablabla!!!</b>');
     });
 });
 
-// с помощью промисов
+// с помощью промисов (требуется mysql2/promise)
 app.get("/bubu", function(req, res){
     pool2.query("SELECT * FROM tab1").then(function(data) {
         res.send('<b style="font-size:50px; color:blue"> heaven <br> </b>/');
     });
 });
 
-// с помощью async - await
+// с помощью async - await (требуется mysql2/promise)
 app.get("/lulu", async function(req, res){
     await pool2.query("SELECT * FROM tab1");    
     res.send('<b style="font-size:50px; color:red"> fire!!!<br> fire!!! </b>/');
