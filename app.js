@@ -49,7 +49,7 @@ app.get("/api", function(req, res){
 app.get("/kuku", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) {
         if(err) return console.log(err);
-        res.json(data);
+        res.send('blabla');
     });
 });
 
