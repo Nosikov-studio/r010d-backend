@@ -58,15 +58,15 @@ app.get("/kuku", function(req, res){
 
 // с помощью промисов (требуется mysql2/promise)
 app.get("/bubu", function(req, res){
-    pool2.query("SELECT * FROM tab1").then(function([rows, fields]) {
-        res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(rows)}</b>/`);
+    pool2.query("SELECT * FROM tab1").then(function([r, f]) {
+        res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(r)}</b>/`);
     });
 });
 
 // с помощью async - await (требуется mysql2/promise)
 app.get("/lulu", async function(req, res){
-    let data=await pool2.query("SELECT * FROM tab1");    
-    res.send(`<b style="font-size:50px; color:red"> fire!!!<br> fire!!! <br> ${JSON.stringify(data)} </b>/`);
+    let d=await pool2.query("SELECT * FROM tab1");    
+    res.send(`<b style="font-size:50px; color:red"> fire!!!<br> fire!!! <br> ${JSON.stringify(d[0])} </b>/`);
     });
 
 
