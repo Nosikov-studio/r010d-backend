@@ -56,7 +56,7 @@ app.get("/kuku", function(req, res){
 app.get("/kukuku", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) {
         if(err) return console.log(err);
-        res.send('<b stile="font-size:50px; color:green">blablabla!!!</b>');
+        res.send('<b style="font-size:50px; color:green">blablabla!!!</b>');
     });
 });
 
