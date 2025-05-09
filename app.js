@@ -59,7 +59,7 @@ app.get("/kuku", function(req, res){
 app.get("/nunu", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) { 
 
-        res.send(`<b style="font-size:50px; color:pink">nununununu!!!<br> ${(data[0])}</b>`);
+        res.send(`<b style="font-size:50px; color:pink">nununununu!!!<br> ${(data[0]['name'])}</b>`);
     });
 });
 
