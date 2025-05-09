@@ -1,4 +1,5 @@
 const mysql = require("mysql2");
+const mysql2 = require ('mysql2/promise');
 const express = require("express");
 const cors = require('cors');
 const app = express();
@@ -10,6 +11,14 @@ const pool = mysql.createPool({
     database: "expo",
     password: "password"
 });
+const pool2 = mysql2.createPool({
+    connectionLimit: 5,
+    host: "localhost",
+    user: "root",
+    database: "expo",
+    password: "password"
+});
+
 
 app.use(cors());
 app.use(express.json());
@@ -48,14 +57,14 @@ app.get("/kuku", function(req, res){
 
 // с помощью промисов
 app.get("/bubu", function(req, res){
-    pool.query("SELECT * FROM tab1").then(function(data) {
+    pool2.query("SELECT * FROM tab1").then(function(data) {
         res.send('<b style="font-size:50px; color:red"> fire!!!<br> fire!!! </b>/');
     });
 });
 
 // с помощью async - await
 app.get("/lulu", async function(req, res){
-    await pool.query("SELECT * FROM tab1");    
+    await pool2.query("SELECT * FROM tab1");    
     res.send('<b style="font-size:50px; color:red"> fire!!!<br> fire!!! </b>/');
     });
 
