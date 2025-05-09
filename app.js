@@ -60,6 +60,14 @@ app.get("/kukuku", function(req, res){
     });
 });
 
+app.get("/bubu", function(req, res){
+    pool.query("SELECT * FROM tab1", function(err, data) {
+        if(err) return console.log(err);
+        res.send('<b style="font-size:50px; color:red"> fire!!!</b>');
+    });
+});
+
+
 app.post("/api", urlencodedParser, function (req, res) {
     if(!req.body) return res.sendStatus(400);
     const name = req.body.name;
