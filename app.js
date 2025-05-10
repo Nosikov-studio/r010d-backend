@@ -96,6 +96,13 @@ app.get("/kuku/f", function(req, res){
     });
 });
 
+// с помощью колбэков (требуется mysql2) - отправка только JSON
+app.get("/kukuj", function(req, res){
+    pool.query("SELECT * FROM tab1", function(err, data) { 
+
+        res.json(data);
+    });
+});
 
 // с помощью колбэков (требуется mysql2) 
 app.get("/nunu", function(req, res){
