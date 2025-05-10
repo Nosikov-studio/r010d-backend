@@ -45,8 +45,21 @@ app.post("/create", urlencodedParser, function (req, res) {
         res.redirect("/");
     });
 });
+
+
+app.post("/api", urlencodedParser, function (req, res) {
+    if(!req.body) return res.sendStatus(400);
+    const name = req.body.name;
+    const age = req.body.age;
+    console.log('from backblabla');
+    pool.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age], function(err, data) {
+        if(err) return console.log(err);
+        console.log('from back'+data);
+        res.json(data);
+    });
+});
 //******************************************************************************************
-// *****************************работа разными подходами (метод get) ***********************
+// *********************работа разными подходами (метод get) - ТОЛЬКО СУТЬ! (без проверок)***********************
 //******************************************без БД************************************************
 
 // (без обращения к БД) с выдачей html
@@ -264,28 +277,25 @@ app.get("/julua/:name/:age", async function(req, res){
 
 
 
-    //***********************************************************************************************************
+//***********************************************************************************************************
 // *****************************работа с POST****************************************************************
+//***********************************************************************************************************
 
-app.get("/api", function(req, res){
-    pool.query("SELECT * FROM tab1", function(err, data) {
-        if(err) return console.log(err);
-        res.json(data);
-    });
-});
+//********************************************************************************************************
+// с помощью колбэков (требуется mysql2)
 
-app.post("/api", urlencodedParser, function (req, res) {
-    if(!req.body) return res.sendStatus(400);
+app.post("/buba", urlencodedParser, function (req, res) {    
     const name = req.body.name;
     const age = req.body.age;
-    console.log('from backblabla');
-    pool.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age], function(err, data) {
-        if(err) return console.log(err);
-        console.log('from back'+data);
+    pool.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age], function(err, data) {        
         res.json(data);
     });
 });
 
+
+
+
+//***********************************************************
 //***********************************************************
 app.listen(30333, function(){
     console.log("Сервер ожидает подключения...");
