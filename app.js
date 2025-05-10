@@ -204,7 +204,7 @@ app.get("/kukuj/:id", function(req, res){
 });
 
 // с помощью промисов (требуется mysql2/promise)получем id пользователя, получаем его из бд - отправляем html
-app.get("/bubuj/:id", function(req, res){
+app.get("/bubu/:id", function(req, res){
     pool2.query("SELECT * FROM tab1 WHERE id=?", [id]).then(function([r, f]) {
         res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(r)}</b>/`);
     });
