@@ -105,7 +105,7 @@ app.get("/nunu", function(req, res){
     });
 });
 
-// с помощью колбэков (требуется mysql2) - отправка JSON
+// с помощью колбэков (требуется mysql2) - отправка только JSON
 app.get("/juju", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) { 
 
@@ -140,7 +140,7 @@ app.get("/mumu/f", function(req, res){
     });
 });
 
-// с помощью промисов (требуется mysql2/promise) - отправка JSON
+// с помощью промисов (требуется mysql2/promise) - отправка только JSON
 app.get("/jujup", function(req, res){
     pool2.query("SELECT * FROM tab1").then(function(data) {
         res.json(data[0]);
@@ -161,7 +161,13 @@ app.get("/lulu/f", async function(req, res){
     res.send(`<b style="font-size:50px; color:red"> fire!!!<br> fire!!! <br> ${JSON.stringify(d[0][1])} </b>/`);
     });
 
-// *****************************работа с API***********************
+// с помощью async - await (требуется mysql2/promise)- отправка только JSON
+app.get("/julua", async function(req, res){
+    let d=await pool2.query("SELECT * FROM tab1");    
+    res.json(d[0]);
+    });    
+//***********************************************************************************************************
+// *****************************работа с POST***********************
 
 app.get("/api", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) {
