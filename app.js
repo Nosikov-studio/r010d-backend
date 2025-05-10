@@ -57,7 +57,7 @@ app.get("/kuku", function(req, res){
 });
 
 // с помощью колбэков (требуется mysql2) - если хотим отправить только первый объект (в JSON)
-app.get("/kuku/1", function(req, res){
+app.get("/kuku/f", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) { 
 
         res.send(`<b style="font-size:50px; color:green">blablabla!!!<br> ${JSON.stringify(data[1])}</b>`);
@@ -81,7 +81,7 @@ app.get("/bubu", function(req, res){
     });
 });
 // с помощью промисов (требуется mysql2/promise) - если хотим отправить только первый объект (в JSON)
-app.get("/bubu/1", function(req, res){
+app.get("/bubu/f", function(req, res){
     pool2.query("SELECT * FROM tab1").then(function([r, f]) {
         res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(r[1])}</b>/`);
     });
@@ -95,7 +95,7 @@ app.get("/mumu", function(req, res){
 });
 
 // с помощью промисов (требуется mysql2/promise)- если хотим отправить только первый объект (в JSON)
-app.get("/mumu/1", function(req, res){
+app.get("/mumu/f", function(req, res){
     pool2.query("SELECT * FROM tab1").then(function(data) {
         res.send(`<b style="font-size:50px; color:brown"> sobaka??? <br> ${JSON.stringify(data[0][1])}</b>/`);
     });
@@ -111,7 +111,7 @@ app.get("/lulu", async function(req, res){
     });
 
 // с помощью async - await (требуется mysql2/promise)- если хотим отправить только первый объект (в JSON)
-app.get("/lulu/1", async function(req, res){
+app.get("/lulu/f", async function(req, res){
     let d=await pool2.query("SELECT * FROM tab1");    
     res.send(`<b style="font-size:50px; color:red"> fire!!!<br> fire!!! <br> ${JSON.stringify(d[0][1])} </b>/`);
     });
