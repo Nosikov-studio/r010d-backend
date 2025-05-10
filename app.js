@@ -48,6 +48,19 @@ app.post("/create", urlencodedParser, function (req, res) {
 
 // *****************************работа разными подходами (метод get) ***********************
 
+// с помощью колбэков (без обращения к БД) с выдачей html
+
+app.get("/pupuh", function(req, res){
+    res.send('<h1 style="font-size:50px; color:lime"> Its PUPUH!!!!! </h1>');
+});
+
+// с помощью колбэков (без обращения к БД) с выдачей json
+
+app.get("/pupuj", function(req, res){
+    res.json([{id:101, name:'vasa', age:39}]);
+});
+
+
 // с помощью колбэков (требуется mysql2)
 app.get("/kuku", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) { 
