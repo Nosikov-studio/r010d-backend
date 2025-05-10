@@ -308,6 +308,17 @@ app.post("/tuta", urlencodedParser, function (req, res) {
     });
 });
 
+// с помощью async - await (требуется mysql2/promise)
+
+app.post("/guga", urlencodedParser, async function (req, res) {    
+    const name = req.body.name;
+    const age = req.body.age;
+    let d=await pool2.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age]);        
+        res.json(d[0]);
+    });
+
+
+
 
 //***********************************************************
 //***********************************************************
