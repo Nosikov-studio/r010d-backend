@@ -223,7 +223,7 @@ app.get("/bubuj/:id", function(req, res){
 // с помощью async - await (требуется mysql2/promise)- отправка только JSON
 app.get("/julua/:id", async function(req, res){
     const id=req.params.id;
-    let d=await pool2.query("SELECT * FROM tab1", [id]);    
+    let d=await pool2.query("SELECT * FROM tab1 id=?", [id]);    
     res.json(d[0]);
     });   
 
