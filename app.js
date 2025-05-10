@@ -235,7 +235,7 @@ app.get("/julua/:id", async function(req, res){
     });   
 
 //************************запрос с двумя параметрами*********************************************************** */
-// с помощью колбэков (требуется mysql2) получем 'name' и 'age', получаем его из бд - отправляем json
+// с помощью колбэков (требуется mysql2) получем по 'name' и 'age', получаем объект из бд - отправляем json
 app.get("/kukuj/:name/:age", function(req, res){
     const name=req.params.name;
     const age=req.params.age;
@@ -244,6 +244,25 @@ app.get("/kukuj/:name/:age", function(req, res){
         res.json(data);
     });
 });
+
+// с помощью промисов (требуется mysql2/promise)получем по 'name' и 'age', получаем объект из бд - отправляем json
+app.get("/bubuj/:name/:age", function(req, res){
+    const name=req.params.name;
+    const age=req.params.age;
+    pool2.query("SELECT * FROM tab1 WHERE name=? and age=?", [name, age]).then(function([r, f]) {
+        res.json(r);
+    });
+});
+
+// с помощью async - await (требуется mysql2/promise)получем по 'name' и 'age', получаем его из бд - отправляем json
+app.get("/julua/:name/:age", async function(req, res){
+    const name=req.params.name;
+    const age=req.params.age;
+    let d=await pool2.query("SELECT * FROM tab1 WHERE name=? and age=?", [name, age]);    
+    res.json(d[0]);
+    });   
+
+
 
     //***********************************************************************************************************
 // *****************************работа с POST****************************************************************
