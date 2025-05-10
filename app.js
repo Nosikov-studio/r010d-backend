@@ -73,7 +73,7 @@ app.get("/puputj", function(req, res){
 
 // (без обращения к БД) с генерацией страницы (pupu.hbs) и передачей в неё массива данных
 
-app.get("/puputj", function(req, res){
+app.get("/puputja", function(req, res){
     res.render("pupu.hbs", {array:[{id:102, name:'olga', age:45},{id:103, name:'Evgeny', age:50},{id:104, name:'kuku', age:101}]});
 });
 
