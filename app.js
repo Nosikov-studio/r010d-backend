@@ -298,7 +298,15 @@ app.post("/buba", urlencodedParser, function (req, res) {
     });
 });
 
+// с помощью промисов (требуется mysql2/promise)
 
+app.post("/tuta", urlencodedParser, function (req, res) {    
+    const name = req.body.name;
+    const age = req.body.age;
+    pool2.query("INSERT INTO tab1 (name, age) VALUES (?,?)", [name, age]).then(function([r, f]) {        
+        res.json(r);
+    });
+});
 
 
 //***********************************************************
