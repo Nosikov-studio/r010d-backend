@@ -105,7 +105,7 @@ app.get("/nunu", function(req, res){
     });
 });
 
-// с помощью колбэков (требуется mysql2)
+// с помощью колбэков (требуется mysql2) - отправка JSON
 app.get("/juju", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) { 
 
@@ -140,7 +140,13 @@ app.get("/mumu/f", function(req, res){
     });
 });
 
-
+// с помощью промисов (требуется mysql2/promise) - отправка JSON
+app.get("/jujup", function(req, res){
+    pool2.query("SELECT * FROM tab1").then(function(data) {
+        res.json(data[0]);
+    });
+});
+//****************************************************************************
 
 
 // с помощью async - await (требуется mysql2/promise)
