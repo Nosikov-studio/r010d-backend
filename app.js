@@ -120,6 +120,7 @@ app.get("/juju", function(req, res){
     });
 });
 //***********************************************************************************************************
+// Здесь 'r' - полученные из БД данные в виде массива, а 'f' - метаданные полей данных
 // с помощью промисов (требуется mysql2/promise)
 app.get("/bubu", function(req, res){
     pool2.query("SELECT * FROM tab1").then(function([r, f]) {
@@ -133,6 +134,13 @@ app.get("/bubu/f", function(req, res){
     });
 });
 
+// с помощью промисов (требуется mysql2/promise) - отправка только JSON
+app.get("/bubuj", function(req, res){
+    pool2.query("SELECT * FROM tab1").then(function([r, f]) {
+        res.json(r);
+    });
+});
+// Далее здесь 'data' будет имеет структуру из двух массивов [r, f]
 // с помощью промисов (требуется mysql2/promise)
 app.get("/mumu", function(req, res){
     pool2.query("SELECT * FROM tab1").then(function(data) {
@@ -192,6 +200,13 @@ app.get("/kukuj/:id", function(req, res){
     pool.query("SELECT * FROM tab1 WHERE id=?", [id], function(err, data) { 
 
         res.json(data);
+    });
+});
+
+// с помощью промисов (требуется mysql2/promise)получем id пользователя, получаем его из бд - отправляем html
+app.get("/bubuj/:id", function(req, res){
+    pool2.query("SELECT * FROM tab1 WHERE id=?", [id]).then(function([r, f]) {
+        res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(r)}</b>/`);
     });
 });
 
