@@ -185,7 +185,7 @@ app.get("/julua", async function(req, res){
     //***********************************************************************************************************
 // *****************************работа с get и параметрами****************************************************************
 
-// с помощью колбэков (требуется mysql2) получем id редактируемого пользователя, получаем его из бд - отправляем html
+// с помощью колбэков (требуется mysql2) получем id пользователя, получаем его из бд - отправляем html
 app.get("/kuku/:id", function(req, res){
     const id=req.params.id;
     pool.query("SELECT * FROM tab1 WHERE id=?", [id], function(err, data) { 
@@ -194,7 +194,7 @@ app.get("/kuku/:id", function(req, res){
     });
 });
 
-// с помощью колбэков (требуется mysql2) получем id редактируемого пользователя, получаем его из бд - отправляем json
+// с помощью колбэков (требуется mysql2) получем id пользователя, получаем его из бд - отправляем json
 app.get("/kukuj/:id", function(req, res){
     const id=req.params.id;
     pool.query("SELECT * FROM tab1 WHERE id=?", [id], function(err, data) { 
@@ -205,14 +205,16 @@ app.get("/kukuj/:id", function(req, res){
 
 // с помощью промисов (требуется mysql2/promise)получем id пользователя, получаем его из бд - отправляем html
 app.get("/bubu/:id", function(req, res){
-    pool2.query("SELECT * FROM tab1 WHERE id=?", id).then(function([r, f]) {
+    const id=req.params.id;
+    pool2.query("SELECT * FROM tab1 WHERE id=?", [id]).then(function([r, f]) {
         res.send(`<b style="font-size:50px; color:blue"> heaven <br> ${JSON.stringify(r)}</b>/`);
     });
 });
 
 // с помощью промисов (требуется mysql2/promise)получем id пользователя, получаем его из бд - отправляем json
 app.get("/bubuj/:id", function(req, res){
-    pool2.query("SELECT * FROM tab1 WHERE id=?", id).then(function([r, f]) {
+    const id=req.params.id;
+    pool2.query("SELECT * FROM tab1 WHERE id=?", [id]).then(function([r, f]) {
         res.json(r);
     });
 });
