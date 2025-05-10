@@ -45,8 +45,9 @@ app.post("/create", urlencodedParser, function (req, res) {
         res.redirect("/");
     });
 });
-
+//******************************************************************************************
 // *****************************работа разными подходами (метод get) ***********************
+//******************************************без БД************************************************
 
 // (без обращения к БД) с выдачей html
 
@@ -77,7 +78,7 @@ app.get("/puputja", function(req, res){
     res.render("pupu.hbs", {array:[{id:102, name:'olga', age:45},{id:103, name:'Evgeny', age:50},{id:104, name:'kuku', age:101}]});
 });
 
-
+//*************************************БД*****************************************************
 
 // с помощью колбэков (требуется mysql2)
 app.get("/kuku", function(req, res){
@@ -96,8 +97,7 @@ app.get("/kuku/f", function(req, res){
 });
 
 
-
-// с помощью колбэков (требуется mysql2)
+// с помощью колбэков (требуется mysql2) 
 app.get("/nunu", function(req, res){
     pool.query("SELECT * FROM tab1", function(err, data) { 
 
@@ -105,6 +105,14 @@ app.get("/nunu", function(req, res){
     });
 });
 
+// с помощью колбэков (требуется mysql2)
+app.get("/juju", function(req, res){
+    pool.query("SELECT * FROM tab1", function(err, data) { 
+
+        res.json(data);
+    });
+});
+//****************************************************************************
 // с помощью промисов (требуется mysql2/promise)
 app.get("/bubu", function(req, res){
     pool2.query("SELECT * FROM tab1").then(function([r, f]) {
