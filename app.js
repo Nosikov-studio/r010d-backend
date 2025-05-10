@@ -219,11 +219,18 @@ app.get("/bubuj/:id", function(req, res){
     });
 });
 //************************************** */
+// с помощью async - await (требуется mysql2/promise)получем id пользователя, получаем его из бд - отправляем html
+app.get("/lulu/:id", async function(req, res){
+    const id=req.params.id;
+    let d=await pool2.query("SELECT * FROM tab1 WHERE id=?", [id]);    
+    res.send(`<b style="font-size:50px; color:red"> fire!!!<br> fire!!! <br> ${JSON.stringify(d[0])} </b>/`);
+    });
 
-// с помощью async - await (требуется mysql2/promise)- отправка только JSON
+
+// с помощью async - await (требуется mysql2/promise)получем id пользователя, получаем его из бд - отправляем json
 app.get("/julua/:id", async function(req, res){
     const id=req.params.id;
-    let d=await pool2.query("SELECT * FROM tab1 id=?", [id]);    
+    let d=await pool2.query("SELECT * FROM tab1 WHERE id=?", [id]);    
     res.json(d[0]);
     });   
 
