@@ -60,10 +60,15 @@ app.get("/pupuj", function(req, res){
     res.json([{id:101, name:'vasa', age:39}]);
 });
 
-// (без обращения к БД) с генерацией страницы (template hbs)
+// (без обращения к БД) с генерацией страницы (pupu.hbs)
 
 app.get("/puput", function(req, res){
     res.render("pupu.hbs");
+});
+// (без обращения к БД) с генерацией страницы (pupu.hbs) и передачей в неё данных
+
+app.get("/puputj", function(req, res){
+    res.render("pupu.hbs", {id:102, name:'kola', age:45});
 });
 
 
