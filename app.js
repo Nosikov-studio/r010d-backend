@@ -46,6 +46,12 @@ app.post("/create", urlencodedParser, function (req, res) {
     });
 });
 
+app.get("/api", function(req, res){
+    pool.query("SELECT * FROM tab1", function(err, data) { 
+
+        res.json(data);
+    });
+});
 
 app.post("/api", urlencodedParser, function (req, res) {
     if(!req.body) return res.sendStatus(400);
