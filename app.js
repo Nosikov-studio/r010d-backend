@@ -65,11 +65,18 @@ app.get("/pupuj", function(req, res){
 app.get("/puput", function(req, res){
     res.render("pupu.hbs");
 });
-// (без обращения к БД) с генерацией страницы (pupu.hbs) и передачей в неё данных
+// (без обращения к БД) с генерацией страницы (pupu.hbs) и передачей в неё простых данных
 
 app.get("/puputj", function(req, res){
-    res.render("pupu.hbs", {id:102, name:'kola', age:45});
+    res.render("pupu.hbs", {id:102, name:'olga', age:45});
 });
+
+// (без обращения к БД) с генерацией страницы (pupu.hbs) и передачей в неё массива данных
+
+app.get("/puputj", function(req, res){
+    res.render("pupu.hbs", {array:[{id:102, name:'olga', age:45},{id:103, name:'Evgeny', age:50},{id:104, name:'kuku', age:101}]});
+});
+
 
 
 // с помощью колбэков (требуется mysql2)

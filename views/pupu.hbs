@@ -8,5 +8,11 @@
 <body>
     <h1 style="font-size:50px; color:olive">PUPUPUPUPUPU!!!!!</h1>
     <h1 style="font-size:50px; color:gold">{{name}}</h1>
+    <ul>
+        {{#each array}}
+            <li>{{this.name}} - {{this.age}}</li>
+        {{/each}}
+    </ul>
+
 </body>
 </html>
