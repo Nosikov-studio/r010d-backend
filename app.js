@@ -170,12 +170,21 @@ app.get("/julua", async function(req, res){
     //***********************************************************************************************************
 // *****************************работа с get и параметрами****************************************************************
 
-// с помощью колбэков (требуется mysql2) получем id редактируемого пользователя, получаем его из бд
+// с помощью колбэков (требуется mysql2) получем id редактируемого пользователя, получаем его из бд - отправляем html
 app.get("/kuku/:id", function(req, res){
     const id=req.params.id;
     pool.query("SELECT * FROM tab1 WHERE id=?", [id], function(err, data) { 
 
         res.send(`<b style="font-size:50px; color:green">blablabla!!!<br> ${JSON.stringify(data)}</b>`);
+    });
+});
+
+// с помощью колбэков (требуется mysql2) получем id редактируемого пользователя, получаем его из бд - отправляем json
+app.get("/kukuj/:id", function(req, res){
+    const id=req.params.id;
+    pool.query("SELECT * FROM tab1 WHERE id=?", [id], function(err, data) { 
+
+        res.json(data);
     });
 });
 
