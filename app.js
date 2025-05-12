@@ -400,7 +400,7 @@ app.post("/edit", urlencodedParser, function (req, res) {
     const name = req.body.name;
     const age = req.body.age;
     const id = req.body.id;
-    pool.query("UPDATE users SET name=?, age=? WHERE id=?", [name, age, id], function(err, data) {
+    pool.query("UPDATE tab1 SET name=?, age=? WHERE id=?", [name, age, id], function(err, data) {
         res.json(data);
     });
 });
