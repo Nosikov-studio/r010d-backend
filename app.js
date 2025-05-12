@@ -411,7 +411,7 @@ app.post("/edi", urlencodedParser, function (req, res) {
     const age = req.body.age;
     const id = req.body.id;
     pool2.query("UPDATE tab1 SET name=?, age=? WHERE id=?", [name, age, id]).then(function(data) {
-        res.json(data);
+        res.json(data[0]);
     });
 });
 
@@ -422,7 +422,7 @@ app.post("/ed", urlencodedParser, async function (req, res) {
     const age = req.body.age;
     const id = req.body.id;
     let d= await pool2.query("UPDATE tab1 SET name=?, age=? WHERE id=?", [name, age, id]);
-        res.json(data);
+        res.json(d[0]);
     });
 
 //********************************************************************************************************** */
