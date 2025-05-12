@@ -371,8 +371,8 @@ app.post("/guga", urlencodedParser, async function (req, res) {
 
 app.post("/del/:id", function(req, res){
     const id = req.params.id;
-    pool.query("DELETE FROM users WHERE id=?", [id], function(err, data) {
-        if(err) return console.log(err);
+    pool.query("DELETE FROM tab1 WHERE id=?", [id], function(err, data) {
+        
         res.json(data);
     });
 });
