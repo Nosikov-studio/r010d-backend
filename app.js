@@ -380,7 +380,7 @@ app.post("/del/:id", function(req, res){
 // с помощью промисов (требуется mysql2/promise)
 app.post("/delp/:id", function(req, res){
     const id = req.params.id;
-    pool2.query("DELETE FROM tab1 WHERE id=?", [id]).then(function(err, data) {
+    pool2.query("DELETE FROM tab1 WHERE id=?", [id]).then(function(data) {
         
         res.json(data);
     });
