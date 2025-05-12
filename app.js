@@ -288,9 +288,20 @@ app.get("/julua/:name/:age", async function(req, res){
     });   
 
 //************************ query запрос*********************************************************** */
-// с помощью колбэков (требуется mysql2) получем по 'name' и 'age', получаем объект из бд - отправляем json
+// с помощью колбэков (требуется mysql2)
 // делаем запрос типа: 
 app.get("/kukuj", function(req, res){
+    const name=req.query.name;
+    const age=req.query.age;
+    pool.query("SELECT * FROM tab1 WHERE name=? and age=?", [name, age], function(err, data) { 
+
+        res.json(data);
+    });
+}); // НЕ РАБОТАЕТ!!! Так как есть точно такой же роут (/kukuj") выше, который и будет срабатывать!
+
+// пробуем с измененным роутером
+// делаем запрос типа: 
+app.get("/kukujq", function(req, res){
     const name=req.query.name;
     const age=req.query.age;
     pool.query("SELECT * FROM tab1 WHERE name=? and age=?", [name, age], function(err, data) { 
