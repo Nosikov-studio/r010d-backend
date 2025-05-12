@@ -289,7 +289,7 @@ app.get("/julua/:name/:age", async function(req, res){
 
 //************************ query запрос*********************************************************** */
 // с помощью колбэков (требуется mysql2)
-// делаем запрос типа: 
+// делаем запрос типа: http://truruki.ru/kukujq?name=victor&age=33
 app.get("/kukuj", function(req, res){
     const name=req.query.name;
     const age=req.query.age;
@@ -300,7 +300,7 @@ app.get("/kukuj", function(req, res){
 }); // НЕ РАБОТАЕТ!!! Так как есть точно такой же роут (/kukuj") выше, который и будет срабатывать!
 
 // пробуем с измененным роутером
-// делаем запрос типа: 
+// делаем запрос типа: http://truruki.ru/kukujq?name=victor&age=33
 app.get("/kukujq", function(req, res){
     const name=req.query.name;
     const age=req.query.age;
@@ -308,8 +308,31 @@ app.get("/kukujq", function(req, res){
 
         res.json(data);
     });
-});
+}); // получаем результат!!!
+// теперь отправляем 1 парамет - id
+// делаем запрос типа: http://truruki.ru/kukujqid?id=12
+app.get("/kukujqid", function(req, res){
+    const id=req.query.id;
+    pool.query("SELECT * FROM tab1 WHERE id=?", [id], function(err, data) { 
 
+        res.json(data);
+    });
+}); // получаем результат!!!
+//********************************
+// с помощью промисов (требуется mysql2/promise)получем id пользователя, получаем его из бд - отправляем json
+app.get("/bubujqid", function(req, res){
+    const id=req.query.id;
+    pool2.query("SELECT * FROM tab1 WHERE id=?", [id]).then(function([r, f]) {
+        res.json(r);
+    });
+});
+//********************************
+// с помощью async - await (требуется mysql2/promise)получем id пользователя, получаем его из бд - отправляем json
+app.get("/juluaqid", async function(req, res){
+    const id=req.params.id;
+    let d=await pool2.query("SELECT * FROM tab1 WHERE id=?", [id]);    
+    res.json(d[0]);
+    });   
 //***********************************************************************************************************
 // *****************************работа с POST****************************************************************
 //***********************************************************************************************************
