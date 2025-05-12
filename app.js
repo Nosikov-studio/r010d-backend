@@ -368,7 +368,7 @@ app.post("/guga", urlencodedParser, async function (req, res) {
     });
 //********************************************************************************************************** */
 //************************************удаление********************************************************************** */
-
+// с помощью колбэков (требуется mysql2)
 app.post("/del/:id", function(req, res){
     const id = req.params.id;
     pool.query("DELETE FROM tab1 WHERE id=?", [id], function(err, data) {
@@ -377,8 +377,21 @@ app.post("/del/:id", function(req, res){
     });
 });
 
+// с помощью промисов (требуется mysql2/promise)
+app.post("/delp/:id", function(req, res){
+    const id = req.params.id;
+    pool2.query("DELETE FROM tab1 WHERE id=?", [id]).then(function(err, data) {
+        
+        res.json(data);
+    });
+});
 
-
+// с помощью async - await (требуется mysql2/promise)
+app.post("/delpa/:id", async function(req, res){
+    const id = req.params.id;
+    let d=await pool2.query("DELETE FROM tab1 WHERE id=?", [id]);    
+    res.json(d[0]);
+    });   
 //********************************************************************************************************** */
 //********************************************************************************************************** */
 //***********************************************************
