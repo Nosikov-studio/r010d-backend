@@ -329,7 +329,7 @@ app.get("/bubujqid", function(req, res){
 //********************************
 // с помощью async - await (требуется mysql2/promise)получем id пользователя, получаем его из бд - отправляем json
 app.get("/juluaqid", async function(req, res){
-    const id=req.params.id;
+    const id=req.query.id;
     let d=await pool2.query("SELECT * FROM tab1 WHERE id=?", [id]);    
     res.json(d[0]);
     });   
