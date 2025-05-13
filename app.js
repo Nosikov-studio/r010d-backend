@@ -449,6 +449,15 @@ app.post("/api/edit", urlencodedParser, function (req, res) {
 });
 
 
+// с помощью колбэков (требуется mysql2)
+app.post("/delete/:id", function(req, res){
+    const id = req.params.id;
+    pool.query("DELETE FROM tab1 WHERE id=?", [id], function(err, data) {
+        
+        res.json(data);
+    });
+});
+
 //***********************
 
 
