@@ -439,7 +439,7 @@ app.get("/api/:id", function(req, res){
 });
 
 // с помощью колбэков (требуется mysql2)
-app.post("/api/", urlencodedParser, function (req, res) {
+app.post("/api/edit", urlencodedParser, function (req, res) {
     const name = req.body.name;
     const age = req.body.age;
     const id = req.body.id;
